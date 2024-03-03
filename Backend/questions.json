@@ -1,13 +1,103 @@
 {
-  "title": "d",
+  "title": "Please Select Fruit choices and Give your Rating . ",
   "questions": [
     {
-      "question": "d",
+      "question": "Apple ",
       "options": [
-        "d",
-        "d",
-        "d",
-        "d"
+        "1",
+        "2",
+        "3",
+        "5"
+      ]
+    },
+    {
+      "question": "oranges ",
+      "options": [
+        "don't like it ",
+        "ok",
+        "Best",
+        "I eat daily "
+      ]
+    },
+    {
+      "question": "Mango ",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ]
+    },
+    {
+      "question": "Blueberry",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ]
+    },
+    {
+      "question": "Banana ",
+      "options": [
+        "1",
+        "2",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "question": "cherry",
+      "options": [
+        "ok",
+        "good",
+        "very good ",
+        "don't like it "
+      ]
+    },
+    {
+      "question": "Grape ",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ]
+    },
+    {
+      "question": "Papaya",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ]
+    },
+    {
+      "question": "Peach",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ]
+    },
+    {
+      "question": "Pineapple",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ]
+    },
+    {
+      "question": "Strawberries",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "5"
       ]
     }
   ]
