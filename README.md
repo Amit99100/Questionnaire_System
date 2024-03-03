@@ -23,10 +23,9 @@ Downloading and installing steps:
 2. Navigate to the project directory:
    cd Questionnaire_System
 
-3. Run the frontend:
+3. To Run the frontend:
 
 Open index.html file in your browser.
-backend port is 3000
 
 4. Backend Setup and Run
    Navigate to the backend directory:
