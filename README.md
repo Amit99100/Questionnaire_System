@@ -49,10 +49,13 @@ Open index.html in your browser to create a new questionnaire.
 # Viewing Created Questionnaires
 
 Visit localhost:3000/form in your browser to see the created questionnaires.
+![image](https://github.com/Amit99100/Questionnaire_System/assets/97939838/b0867068-be5f-4e1b-9533-84b2c069d923)
 
 # Viewing Filled Forms
 
 Visit localhost:3000/data in your browser to see the filled forms stored in the database.
+![image](https://github.com/Amit99100/Questionnaire_System/assets/97939838/b55e781a-9ea8-4041-b389-69e359f492ff)
+
 
 Author
 Amit Maurya
