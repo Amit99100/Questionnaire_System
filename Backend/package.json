@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for Questionnaire System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^8.2.0",
+    "nodemon": "^3.1.0"
+  }
+}

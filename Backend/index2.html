@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+    <div id="box">
+        <h2 id="title">Title</h2>
+        <form id="questionnaireForm" method="post">
+            <div id="questions"></div>
+            <button id="button1" type="submit">Submit</button>
+            <div id="successMessage"></div>
+        </form>
+        <button id="prevPageBtn">Previous Page</button>
+        <button id="nextPageBtn">Next Page</button>
+    </div>
+
+
+
+    <script>
+        fetch('/questionform')
+            .then(response => response.json())
+            .then(data => {
+                const questionsContainer = document.getElementById('questions');
+                const form = document.getElementById('questionnaireForm');
+                const totalPages = Math.ceil(data.questions.length / 10);
+                let currentPage = 1;
+                const responses = {}; // Object to store user responses
+
+                const allResponse = {};
+
+                // Display questions function
+                // Display questions function with pagination
+                function displayQuestions() {
+
+                    document.getElementById('title').innerHTML = `${data.title}`
+                    questionsContainer.innerHTML = '';
+                    const startIndex = (currentPage - 1) * 10;
+                    const endIndex = Math.min(startIndex + 10, data.questions.length); // Ensure endIndex doesn't exceed the total number of questions
+                    const questions = data.questions.slice(startIndex, endIndex);
+
+                    questions.forEach((question, index) => {
+                        const questionDiv = document.createElement('div');
+                        questionDiv.innerHTML = `
+            <h3>${startIndex + index + 1}. ${question.question}</h3>
+            ${question.options.map(option => `
+                <input type="checkbox" name="question${startIndex + index}" value="${option}"
+                ${responses[startIndex + index] && responses[startIndex + index].includes(option) ? 'checked' : ''}>
+                <label>${option}</label>
+                <br>
+            `).join('')}
+        `;
+                        console.log(responses);
+                        questionsContainer.appendChild(questionDiv);
+                    });
+                }
+
+
+                // Update responses function to store responses in an object
+                function updateResponses() {
+                    const formData = new FormData(form);
+                    for (const [key, value] of formData.entries()) {
+                        const questionIndex = parseInt(key.replace('question', ''));
+                        if (!responses[questionIndex]) {
+                            responses[questionIndex] = [];
+                        }
+                        // Check if option is already selected to avoid duplicates
+                        if (!responses[questionIndex].includes(value)) {
+                            responses[questionIndex].push(value);
+                        }
+                    }
+
+                    // localStorage.removeItem("responses");
+                }
+
+
+
+                // Display initial questions
+                displayQuestions();
+                //*******************************************************
+
+                // ************************************************
+                // Pagination event listeners
+                document.getElementById('prevPageBtn').addEventListener('click', () => {
+
+                    if (currentPage > 1) {
+                        updateResponses(); // Update responses before navigating
+                        currentPage--;
+                        displayQuestions();
+                    }
+                });
+
+                document.getElementById('nextPageBtn').addEventListener('click', () => {
+
+                    if (currentPage < totalPages) {
+                        updateResponses(); // Update responses before navigating
+                        currentPage++;
+                        displayQuestions();
+                    }
+                });
+
+
+                form.addEventListener('submit', event => {
+                    event.preventDefault(); // Prevent default form submission
+                    updateResponses(); // Update responses before form submission
+                    console.log('All user responses:', responses);
+                    // Assuming 'responses' is the object containing the response data
+
+                    // Convert the 'responses' object to an array of objects
+                    // const responseData = Object.entries(responses).map(([key, value]) => ({ index: key, responses: value }));
+                    // // Include the title in the responseData object
+                    // responseData.title = data.title;
+
+                    // Include the title in the responseData object
+                    const responseData = {
+                        title: data.title, // Access title directly from the data object
+                        responses: Object.entries(responses).map(([key, value]) => ({ index: key, responses: value }))
+                    };
+
+                    console.log(responseData);
+
+                    const submitButton = document.getElementById('button1');
+                    submitButton.disabled = true; // Disable the button
+                    submitButton.innerHTML = 'Submitting Form ...'; // Change button text
+
+                    // Send the data to the backend using fetch
+                    fetch('/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(responseData)
+                    })
+                        .then(response => response.text())
+                        .then(data => {
+                            // Display success message on the frontend
+                            document.getElementById('box').innerHTML = "Submitted ";
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                });
+
+            });
+
+    </script>
+</body>
+
+</html>
