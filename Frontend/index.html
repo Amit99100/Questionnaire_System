@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index2.html">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Questionnaire System</h1>
+        <input type="text" id="questionnaire-title" placeholder=" Please Enter questionnaire Title">
+        <div id="question-form">
+            <input type="text" id="question" class="form_value" placeholder="Enter question">
+            <input type="text" id="option1" class="form_value" placeholder="Option 1">
+            <input type="text" id="option2" class="form_value" placeholder="Option 2">
+            <input type="text" id="option3" class="form_value" placeholder="Option 3">
+            <input type="text" id="option4" class="form_value" placeholder="Option 4">
+            <div id="questions"></div>
+            <span> <button onclick="addQuestion()">Add Question</button> &nbsp; <button
+                    onclick="submitQuestionnaire()">Submit
+                    Form </button></span>
+        </div>
+        <div id="question-list"></div>
+        <br>
+
+        <div id="response"></div>
+    </div>
+
+
+    <script src="script.js"></script>
+    <script>
+
+    </script>
+
+</body>
+
+</html>
