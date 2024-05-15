@@ -22,7 +22,7 @@ const questionnaireData = JSON.parse(fs.readFileSync('questions.json'));
 app.use('/questionnaire', bodyParser.json());
 
 // Connect to MongoDB database
-let MONGO_URL = "mongodb+srv://akm1632456:Amit456@cluster0.4zwu9ey.mongodb.net/?retryWrites=true&w=majority";
+let MONGO_URL = "write here mongo url " ; 
 mongoose.connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Define questionnaire schema
